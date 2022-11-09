@@ -8,6 +8,7 @@ class Photo:
         with open("secrets.yaml", "r") as file:
             config = yaml.safe_load(file)
         self._client = TelegramClient("Contacts", config["telegram"]["api_id"], config["telegram"]["api_hash"])
+        self._client.start()
         self._client.connect()
         self._users = {}
         for user in self._client(functions.contacts.GetContactsRequest(0)).users:
